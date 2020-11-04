@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="mt-2">All Our Flats</h1>
+  <div class="row">
+    <% @flats.each do |flat| %>
+      <div class="col-12 col-md-4">
+        <div class="card-trip my-3">
+          <% url = "https://loremflickr.com/600/400/house?random=#{rand(1..100)}" %>
+          <img src=<%= url %>/>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= link_to flat.name, flat_path(flat) %></h2>
+              <p><i class="fas fa-user-friends"></i> <%= flat.number_of_guests %></p>
+              <%= link_to edit_flat_path(flat) do %>
+                <p class="text-warning">edit this flat</p>
+              <% end %>
+              <%= link_to flat_path(flat), method: :delete, data: { confirm: "Delete this flat?" } do %>
+                <p class="text-danger">delete this flat</p>
+              <% end %>
+            </div>
+            <h2 class="card-trip-pricing">$<%= flat.price_per_night %></h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
